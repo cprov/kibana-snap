@@ -1,0 +1,24 @@
+name: kibana
+version: 5.4.0
+summary: Kibana analytics and search dashboard for Elasticsearch
+description: |
+  Kibana is an open source (Apache Licensed), browser based analytics and search
+  dashboard for Elasticsearch.
+confinement: strict
+grade: devel
+
+apps:
+    kibana:
+      command: |
+        env BABEL_CACHE_PATH=$SNAP_DATA/babel_cache
+        $SNAP/bin/kibana
+      daemon: simple
+      plugs:
+        - network
+        - network-bind
+        - system-observe
+parts:
+  kibana:
+    plugin: dump
+    source: https://artifacts.elastic.co/downloads/kibana/kibana-5.4.0-linux-x86_64.tar.gz
+
